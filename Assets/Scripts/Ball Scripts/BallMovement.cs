@@ -3,6 +3,7 @@
 	
 	Resources used: https://www.youtube.com/watch?v=7-8nE9_FwWs
 					https://answers.unity.com/questions/50391/how-to-round-a-float-to-2-dp.html
+					https://www.youtube.com/watch?v=jmTUUP33GHs
 */
 
 using System.Collections;
@@ -18,11 +19,12 @@ public class BallMovement : MonoBehaviour
 	
 	public float ForceMagnitude = 50f;
 	
-	private Vector2 BallDirection;
+	//private Vector2 BallDirection;
+	public Vector3 ForceDirection;
 	
 	//these variables determine how long the ball can bolt for
 	private float BoltStart;
-	private float BoltMaxRange = 5f;
+	private float BoltMaxRange = 1f;
 	
     void Awake()
 	{
@@ -38,6 +40,7 @@ public class BallMovement : MonoBehaviour
     void Update()
     {
         ChangeDirection();
+		print((int)Mathf.Abs((transform.position - CursorPosition).magnitude));
     }
 	
 	void ChangeDirection()
@@ -62,7 +65,7 @@ public class BallMovement : MonoBehaviour
 			if(BoltStart != 0)
 			{
 				//get the distance between the ball and the cursor
-				Vector3 ForceDirection = (transform.position - CursorPosition).normalized;
+				ForceDirection = (transform.position - CursorPosition).normalized;
 				
 				rb.AddForce(ForceDirection * ForceMagnitude, ForceMode2D.Impulse);
 				
@@ -70,5 +73,10 @@ public class BallMovement : MonoBehaviour
 				BoltStart -= Time.deltaTime;
 			}
 		}
+	}
+	
+	void OnCollisionEnter2D(Collision2D target)
+	{
+		target.gameObject.GetComponent<TargetDamage>().Damage((int)Mathf.Abs((transform.position - CursorPosition).magnitude));
 	}
 }
