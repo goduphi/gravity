@@ -24,7 +24,7 @@ public class BallMovement : MonoBehaviour
 	
 	//these variables determine how long the ball can bolt for
 	private float BoltStart;
-	private float BoltMaxRange = 1f;
+	private float BoltMaxRange = 0.5f;
 	
     void Awake()
 	{
@@ -40,7 +40,7 @@ public class BallMovement : MonoBehaviour
     void Update()
     {
         ChangeDirection();
-		print((int)Mathf.Abs((transform.position - CursorPosition).magnitude));
+		//print((int)Mathf.Abs((transform.position - CursorPosition).magnitude));
     }
 	
 	void ChangeDirection()
@@ -62,7 +62,7 @@ public class BallMovement : MonoBehaviour
 			rb.velocity = new Vector2(BallDirection.x, BallDirection.y);
 			*/
 			
-			if(BoltStart != 0)
+			if(BoltStart > 0)
 			{
 				//get the distance between the ball and the cursor
 				ForceDirection = (transform.position - CursorPosition).normalized;
@@ -71,6 +71,12 @@ public class BallMovement : MonoBehaviour
 				
 				//the bolt time is decreased so that when it reaches zero, the ball starts falling again
 				BoltStart -= Time.deltaTime;
+				
+				print(BoltStart);
+			}
+			else
+			{
+				BoltStart = BoltMaxRange;
 			}
 		}
 	}
@@ -78,5 +84,6 @@ public class BallMovement : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D target)
 	{
 		target.gameObject.GetComponent<TargetDamage>().Damage((int)Mathf.Abs((transform.position - CursorPosition).magnitude));
+		rb.AddForce(-ForceDirection * ForceMagnitude/3, ForceMode2D.Impulse);
 	}
 }
