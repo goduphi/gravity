@@ -12,10 +12,11 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-	public GameObject MainCamera;
+	private Camera MainCamera;
 	
 	private Rigidbody2D rb;
 	private Vector3 CursorPosition;
+	private Vector3 TouchPosition;
 	
 	public float ForceMagnitude = 50f;
 	
@@ -26,27 +27,36 @@ public class BallMovement : MonoBehaviour
 	private float BoltStart;
 	private float BoltMaxRange = 0.5f;
 	
+	//these variables only allow the ball to move if the player pulls back with his finger
+	
+	
     void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		MainCamera = Camera.main;
 	}
 	
 	void Start()
 	{
 		BoltStart = BoltMaxRange;
+		Time.timeScale = 1f;
 	}
 
     // Update is called once per frame
     void Update()
     {
         ChangeDirection();
-		//print((int)Mathf.Abs((transform.position - CursorPosition).magnitude));
+		print((int)Mathf.Abs((transform.position - CursorPosition).magnitude));
+		GameObject.Find("Health Bar").GetComponent<BallHealth>().ReduceLifeSpan();
     }
 	
 	void ChangeDirection()
 	{
 		//we need to convert the mouse position from screen space to world space
 		CursorPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, MainCamera.transform.position.z));
+		
+		//Touch touch = Input.GetTouch(0);
+		//TouchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, MainCamera.transform.position.z));
 		
 		if(Input.GetMouseButton(0))
 		{	
@@ -66,6 +76,7 @@ public class BallMovement : MonoBehaviour
 			{
 				//get the distance between the ball and the cursor
 				ForceDirection = (transform.position - CursorPosition).normalized;
+				//ForceDirection = (transform.position - TouchPosition).normalized;
 				
 				rb.AddForce(ForceDirection * ForceMagnitude, ForceMode2D.Impulse);
 				
@@ -79,6 +90,7 @@ public class BallMovement : MonoBehaviour
 				BoltStart = BoltMaxRange;
 			}
 		}
+		
 	}
 	
 	void OnCollisionEnter2D(Collision2D target)

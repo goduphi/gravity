@@ -6,7 +6,7 @@ public class TargetDamage : MonoBehaviour
 {
 	public GameObject Explode;
 	
-	private int MAX_DAMAGE = 22;
+	private int MAX_DAMAGE = 20;
 	
 	public void Damage(int DamageAmount)
 	{
@@ -17,6 +17,8 @@ public class TargetDamage : MonoBehaviour
 			Animator anim = Camera.main.GetComponent<Animator>();
 			anim.SetTrigger("CameraShake");
 			ExplodeOnCollision();
+			GameObject.Find("ScoreText").GetComponent<Score>().IncrementScore();
+			GameObject.Find("Health Bar").GetComponent<BallHealth>().AddLifeSpan();
 		}
 	}
 	

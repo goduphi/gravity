@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class RandomlyGenerateTarget : MonoBehaviour
 {
-	//stores the height and width of the camera in world units
-	private float hHeight;
-	private float hWidth;
+	//get camera information
+	private CameraInfo cam;
 	
 	//holds information about the target game object
 	public GameObject SquareTarget;
@@ -14,15 +13,14 @@ public class RandomlyGenerateTarget : MonoBehaviour
 	
 	void Start()
 	{
-		hHeight = Camera.main.orthographicSize;
-		hWidth = Camera.main.aspect * hHeight;
+		cam = new CameraInfo();
 		StartCoroutine(RandomlyGenerate(2f, 0.5f, 2f));
 	}
 	
     IEnumerator RandomlyGenerate(float DestroyAfter, float SpawnAfter, float SetBound)
 	{
 		yield return new WaitForSeconds(SpawnAfter);
-		Vector2 pos = new Vector2(Random.Range(-hHeight/SetBound, hHeight/SetBound), Random.Range(-hWidth/SetBound, hWidth/SetBound));
+		Vector2 pos = new Vector2(Random.Range(-cam.HalfCamHeightWU/SetBound, cam.HalfCamHeightWU/SetBound), Random.Range(-cam.HalfCamWidthWU/SetBound, cam.HalfCamWidthWU/SetBound));
 		TempObject = Instantiate(SquareTarget, pos, Quaternion.identity);
 		Destroy(TempObject, DestroyAfter);
 		StartCoroutine(RandomlyGenerate(DestroyAfter, SpawnAfter, SetBound));
