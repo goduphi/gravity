@@ -23,6 +23,7 @@ public class BallSpawner : MonoBehaviour
 			//BallPrefab.SetActive(true);
 			TempObj = Instantiate(BallPrefab, new Vector2(0f, 0f), Quaternion.identity);
 		}
+		GameObject.Find("Health Bar").GetComponent<BallHealth>().ReduceLifeSpan();
 		CheckBounds();
     }
 	

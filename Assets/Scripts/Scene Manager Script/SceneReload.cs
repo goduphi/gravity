@@ -10,7 +10,6 @@ public class SceneReload : MonoBehaviour
 	
 	void Start()
 	{
-		Screen.orientation = ScreenOrientation.LandscapeLeft;
 		NewScore = GameObject.Find("Score").GetComponent<Text>();
 		NewScore.text = "" + Score._score;
 	}

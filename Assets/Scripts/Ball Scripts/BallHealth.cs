@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class BallHealth : MonoBehaviour
 {
-	public float healthValue = 100f;
+	public float healthValue = 2000f;
 	private float speed = 10f;
 	private Slider health_Slider;
 	

@@ -11,6 +11,8 @@ public class RandomlyGenerateTarget : MonoBehaviour
 	public GameObject SquareTarget;
 	private GameObject TempObject;
 	
+	public GameObject BallPrefab;
+	
 	void Start()
 	{
 		cam = new CameraInfo();
@@ -21,7 +23,8 @@ public class RandomlyGenerateTarget : MonoBehaviour
 	{
 		yield return new WaitForSeconds(SpawnAfter);
 		Vector2 pos = new Vector2(Random.Range(-cam.HalfCamHeightWU/SetBound, cam.HalfCamHeightWU/SetBound), Random.Range(-cam.HalfCamWidthWU/SetBound, cam.HalfCamWidthWU/SetBound));
-		TempObject = Instantiate(SquareTarget, pos, Quaternion.identity);
+		if(BallPrefab.transform.position.x != pos.x && BallPrefab.transform.position.y != pos.y)
+			TempObject = Instantiate(SquareTarget, pos, Quaternion.identity);
 		Destroy(TempObject, DestroyAfter);
 		StartCoroutine(RandomlyGenerate(DestroyAfter, SpawnAfter, SetBound));
 	}
