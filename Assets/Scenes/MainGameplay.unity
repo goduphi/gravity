@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -599,8 +599,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: de387dee77f2dc04babdc79791824e81, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -628,9 +628,10 @@ GameObject:
   - component: {fileID: 982616644}
   - component: {fileID: 982616643}
   - component: {fileID: 982616645}
+  - component: {fileID: 982616646}
   m_Layer: 0
   m_Name: Base Platform
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -724,6 +725,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.6413307, y: 0.19086552}
   m_EdgeRadius: 0
+--- !u!114 &982616646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982616642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5801e9d788f868d4ea41e7c165a7c298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &990902344
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,9 +850,10 @@ GameObject:
   - component: {fileID: 1718573791}
   - component: {fileID: 1718573790}
   - component: {fileID: 1718573789}
+  - component: {fileID: 1718573792}
   m_Layer: 0
   m_Name: Base Platform (1)
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -933,6 +947,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1718573792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718573788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5801e9d788f868d4ea41e7c165a7c298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1839926568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,7 +1031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 349, y: 188}
+  m_AnchoredPosition: {x: 289, y: 155}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1948593165

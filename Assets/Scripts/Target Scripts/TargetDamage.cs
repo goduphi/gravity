@@ -6,7 +6,7 @@ public class TargetDamage : MonoBehaviour
 {
 	public GameObject Explode;
 	
-	private int MAX_DAMAGE = 20;
+	private int MAX_DAMAGE = 3;
 	
 	public void Damage(int DamageAmount)
 	{

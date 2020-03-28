@@ -16,7 +16,7 @@ public class RandomlyGenerateTarget : MonoBehaviour
 	void Start()
 	{
 		cam = new CameraInfo();
-		StartCoroutine(RandomlyGenerate(2f, 0.5f, 2f));
+		StartCoroutine(RandomlyGenerate(2f, 0.2f, 1.2f));
 	}
 	
     IEnumerator RandomlyGenerate(float DestroyAfter, float SpawnAfter, float SetBound)

@@ -13,6 +13,7 @@ public class LineTrajectory : MonoBehaviour
 	
 	public void RenderTrajectoryLine(Vector3 startPos, Vector3 endPos)
 	{
+		// Set the number of vertices of the line to 2
 		lr.positionCount = 2;
 		
 		Vector3[] points = new Vector3[2];

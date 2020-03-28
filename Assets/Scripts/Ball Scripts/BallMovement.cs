@@ -5,6 +5,7 @@
 					https://answers.unity.com/questions/50391/how-to-round-a-float-to-2-dp.html
 					https://www.youtube.com/watch?v=jmTUUP33GHs
 					https://www.youtube.com/watch?v=Tsha7rp58LI&t=827s
+					https://unity3d.college/2017/07/03/using-vector3-reflect-to-cheat-ball-bouncing-physics-in-unity/
 					
 					*SHOWVIK INPUT
 					*Show aim direction
@@ -28,7 +29,9 @@ public class BallMovement : MonoBehaviour
 	private Rigidbody2D rb;
 	private Vector3 CursorPosition;
 	private Vector3 TouchPosition;
-	
+	private Vector3 lastKnownVelocity;
+
+
 	public float ForceMagnitude = 1f;
 	private float ForceReductionFactor = 2f;
 	
@@ -38,6 +41,7 @@ public class BallMovement : MonoBehaviour
 	//these variables determine how long the ball can bolt for
 	private float BoltStart;
 	private float BoltMaxRange = 0.5f;
+	private float BallSpeed = 10f;
 	
 	//these variables only allow the ball to move if the player pulls back with his finger
 	private Vector3 startPos;
@@ -61,7 +65,9 @@ public class BallMovement : MonoBehaviour
     void Update()
     {
         ChangeDirection();
-    }
+		lastKnownVelocity = rb.velocity;
+
+	}
 	
 	void ChangeDirection()
 	{
@@ -70,7 +76,6 @@ public class BallMovement : MonoBehaviour
 		
 		//Touch touch = Input.GetTouch(0);
 		//CursorPosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, MainCamera.transform.position.z));
-		
 		
 		if(Input.GetMouseButtonDown(0))
 		{
@@ -92,7 +97,7 @@ public class BallMovement : MonoBehaviour
 			{
 				//get the distance between the ball and the cursor
 				ForceDirection = (startPos - CursorPosition).normalized/ForceReductionFactor;
-				//ForceDirection = (transform.position - TouchPosition).normalized;
+				//ForceDirection = (transform.position - TouchPosition).normalized/ForceReductionFactor;
 				
 				rb.AddForce(ForceDirection * ForceMagnitude, ForceMode2D.Impulse);
 				
@@ -109,11 +114,24 @@ public class BallMovement : MonoBehaviour
 	
 	void OnCollisionEnter2D(Collision2D target)
 	{
+		if (target.gameObject.tag == "Base")
+		{
+			// Retrieve the last known velocity/speed
+			float speed = lastKnownVelocity.magnitude;
+			// Use Vector3.Reflect, to create a reflection about a normal point
+			// We need to provide the normal at the point of contact
+			// To get the normal at the point of contact, use GetContact
+			// When normalized, a vector keeps the same direction but its length is 1.0.
+			// https://docs.unity3d.com/ScriptReference/Vector3.Reflect.html
+			Vector3 direction = Vector3.Reflect(lastKnownVelocity.normalized, target.GetContact(0).normal);
+			rb.velocity = direction * Mathf.Max(speed, BallSpeed);
+		}
+
 		if(target.gameObject.tag == "Target")
 		{
-			target.gameObject.GetComponent<TargetDamage>().Damage((int)Mathf.Abs((transform.position - CursorPosition).magnitude));
+			target.gameObject.GetComponent<TargetDamage>().Damage((int)Mathf.Abs((startPos - CursorPosition).magnitude));
 			rb.AddForce(-ForceDirection * ForceMagnitude/3, ForceMode2D.Impulse);
+			return;
 		}
-		
 	}
 }

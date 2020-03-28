@@ -4,7 +4,7 @@ ScriptsOnlyBuild:
     - BallHealth
     - BallMovement
     - BallSpawner
-    - PlankMovement
+    - LineTrajectory
     - RandomlyGenerateTarget
     - SceneReload
     - Score
@@ -61,7 +61,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9884}
     - Class: 114
-      Script: {instanceID: 10292}
+      Script: {instanceID: 10294}
     - Class: 114
       Script: {instanceID: 10664}
     - Class: 114
@@ -101,6 +101,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
+    - Class: 62
+      Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
@@ -128,11 +130,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10230}
     - Class: 114
-      Script: {instanceID: 10268}
+      Script: {instanceID: 10266}
     - Class: 114
-      Script: {instanceID: 10292}
+      Script: {instanceID: 10270}
     - Class: 114
-      Script: {instanceID: 10506}
+      Script: {instanceID: 10294}
     - Class: 114
       Script: {instanceID: 10930}
     - Class: 114
@@ -142,6 +144,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11544}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 120
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
@@ -187,7 +191,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9884}
     - Class: 114
-      Script: {instanceID: 10292}
+      Script: {instanceID: 10294}
     - Class: 114
       Script: {instanceID: 10664}
     - Class: 114
@@ -403,6 +407,12 @@ ScriptsOnlyBuild:
     className: BallSpawner
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LineTrajectory
+  - hash:
+      serializedVersion: 2
       Hash: f4a566c9b58deb9a1b8a5a28f0bf93d3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -455,12 +465,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlankMovement
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -682,4 +686,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/MainGameplay.unity
   - Assets/Scenes/GameOver.unity
-  playerPath: E:/Unity Projects/Gravity/demo/demov2.apk
+  playerPath: E:/Unity Projects/Gravity/demo/demov3.0.apk
